@@ -46,8 +46,6 @@ namespace SQLApp {
         
         private global::System.Data.DataRelation relationFKProducts;
         
-        private global::System.Data.DataRelation relationFKDishesCategories;
-        
         private global::System.Data.DataRelation relationFKClients;
         
         private global::System.Data.DataRelation relationFKEmployees;
@@ -57,6 +55,8 @@ namespace SQLApp {
         private global::System.Data.DataRelation relationFKOrders;
         
         private global::System.Data.DataRelation relationFKStatusPreOrders;
+        
+        private global::System.Data.DataRelation relationFKDishesCategories;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -404,12 +404,12 @@ namespace SQLApp {
             }
             this.relationFKDishes_2 = this.Relations["FKDishes_2"];
             this.relationFKProducts = this.Relations["FKProducts"];
-            this.relationFKDishesCategories = this.Relations["FKDishesCategories"];
             this.relationFKClients = this.Relations["FKClients"];
             this.relationFKEmployees = this.Relations["FKEmployees"];
             this.relationFKDishes = this.Relations["FKDishes"];
             this.relationFKOrders = this.Relations["FKOrders"];
             this.relationFKStatusPreOrders = this.Relations["FKStatusPreOrders"];
+            this.relationFKDishesCategories = this.Relations["FKDishesCategories"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -446,10 +446,6 @@ namespace SQLApp {
                         this.tableProducts.IdProductsColumn}, new global::System.Data.DataColumn[] {
                         this.tableCompositionDishes.IdProductsColumn}, false);
             this.Relations.Add(this.relationFKProducts);
-            this.relationFKDishesCategories = new global::System.Data.DataRelation("FKDishesCategories", new global::System.Data.DataColumn[] {
-                        this.tableDishesCategories.IdCategoriesColumn}, new global::System.Data.DataColumn[] {
-                        this.tableDishes.IdCategoriesColumn}, false);
-            this.Relations.Add(this.relationFKDishesCategories);
             this.relationFKClients = new global::System.Data.DataRelation("FKClients", new global::System.Data.DataColumn[] {
                         this.tableClients.IdClientsColumn}, new global::System.Data.DataColumn[] {
                         this.tableOrders.IdClientsColumn}, false);
@@ -470,6 +466,10 @@ namespace SQLApp {
                         this.tableStatusPreOrders.IdStatusColumn}, new global::System.Data.DataColumn[] {
                         this.tablePreOrders.IdStatusColumn}, false);
             this.Relations.Add(this.relationFKStatusPreOrders);
+            this.relationFKDishesCategories = new global::System.Data.DataRelation("FKDishesCategories", new global::System.Data.DataColumn[] {
+                        this.tableDishesCategories.IdCategoriesColumn}, new global::System.Data.DataColumn[] {
+                        this.tableDishes.IdCategoriesColumn}, false);
+            this.Relations.Add(this.relationFKDishesCategories);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

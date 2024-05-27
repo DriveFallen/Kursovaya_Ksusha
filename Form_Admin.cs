@@ -126,7 +126,9 @@ namespace SQLApp
         }
         private void button_tableEmployerChange_Click(object sender, EventArgs e)
         {
-
+            Form_Employees form = new Form_Employees();
+            form.Show();
+            this.Close();
         }
 
 

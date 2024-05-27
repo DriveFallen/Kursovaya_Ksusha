@@ -86,32 +86,35 @@
             // 
             // button_delete
             // 
+            this.button_delete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.button_delete.Location = new System.Drawing.Point(687, 73);
             this.button_delete.Name = "button_delete";
             this.button_delete.Size = new System.Drawing.Size(85, 35);
             this.button_delete.TabIndex = 16;
             this.button_delete.Text = "Удалить";
-            this.button_delete.UseVisualStyleBackColor = true;
+            this.button_delete.UseVisualStyleBackColor = false;
             this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
             // 
             // button_change
             // 
+            this.button_change.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button_change.Location = new System.Drawing.Point(596, 73);
             this.button_change.Name = "button_change";
             this.button_change.Size = new System.Drawing.Size(85, 35);
             this.button_change.TabIndex = 15;
             this.button_change.Text = "Изменить";
-            this.button_change.UseVisualStyleBackColor = true;
+            this.button_change.UseVisualStyleBackColor = false;
             this.button_change.Click += new System.EventHandler(this.button_change_Click);
             // 
             // button_add
             // 
+            this.button_add.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button_add.Location = new System.Drawing.Point(505, 73);
             this.button_add.Name = "button_add";
             this.button_add.Size = new System.Drawing.Size(85, 35);
             this.button_add.TabIndex = 14;
             this.button_add.Text = "Добавить";
-            this.button_add.UseVisualStyleBackColor = true;
+            this.button_add.UseVisualStyleBackColor = false;
             this.button_add.Click += new System.EventHandler(this.button_add_Click);
             // 
             // textBox_unit

@@ -81,7 +81,7 @@ namespace SQLApp
             Select_Log_Pass.Parameters.Add(parametr_login_2);
             Select_Log_Pass.Parameters.Add(parametr_password_2);
 
-            string Query_3 = "Select count(*) from Employees where Login = @login and Password = @password and Post = 'post1'";
+            string Query_3 = "Select count(*) from Employees where Login = @login and Password = @password and Post = 'Admin'";
             SqlCommand Select_Login_Pass_Adm = new SqlCommand(Query_3, connection);
             SqlParameter parametr_login_3 = new SqlParameter("@login", LoginField.Text);
             SqlParameter parametr_password_3 = new SqlParameter("@password", PassField.Text);
