@@ -72,6 +72,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RestoranDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Окна редактирования\Form_Clients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Окна редактирования\Form_Clients.Designer.cs">
+      <DependentUpon>Form_Clients.cs</DependentUpon>
+    </Compile>
     <Compile Include="Окна редактирования\Form_Employees.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Окна редактирования\Form_Clients.resx">
+      <DependentUpon>Form_Clients.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Окна редактирования\Form_Dishes_change.resx">
       <DependentUpon>Form_Dishes_change.cs</DependentUpon>
     </EmbeddedResource>

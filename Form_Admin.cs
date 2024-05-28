@@ -187,7 +187,9 @@ namespace SQLApp
         }
         private void button_tableClientChange_Click(object sender, EventArgs e)
         {
-
+            Form_Clients form = new Form_Clients();
+            form.Show();
+            this.Close();
         }
 
         private void button_close_Click(object sender, EventArgs e)
