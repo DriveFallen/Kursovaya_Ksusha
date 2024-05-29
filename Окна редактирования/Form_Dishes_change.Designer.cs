@@ -63,8 +63,8 @@
             this.button_dishes_add = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.numericUpDown_compositionDishes_quantity = new System.Windows.Forms.NumericUpDown();
-            this.comboBox_compositionDishes_idProducts = new System.Windows.Forms.ComboBox();
-            this.comboBox_compositionDishes_NameDishes = new System.Windows.Forms.ComboBox();
+            this.comboBox_compositionDishes_products = new System.Windows.Forms.ComboBox();
+            this.comboBox_compositionDishes_dishes = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button_compositionDishes_delete = new System.Windows.Forms.Button();
@@ -234,8 +234,8 @@
             this.Панель_админа.Controls.Add(this.button_dishes_add);
             this.Панель_админа.Controls.Add(this.label8);
             this.Панель_админа.Controls.Add(this.numericUpDown_compositionDishes_quantity);
-            this.Панель_админа.Controls.Add(this.comboBox_compositionDishes_idProducts);
-            this.Панель_админа.Controls.Add(this.comboBox_compositionDishes_NameDishes);
+            this.Панель_админа.Controls.Add(this.comboBox_compositionDishes_products);
+            this.Панель_админа.Controls.Add(this.comboBox_compositionDishes_dishes);
             this.Панель_админа.Controls.Add(this.label5);
             this.Панель_админа.Controls.Add(this.label3);
             this.Панель_админа.Controls.Add(this.button_compositionDishes_delete);
@@ -439,23 +439,23 @@
             0,
             0});
             // 
-            // comboBox_compositionDishes_idProducts
+            // comboBox_compositionDishes_products
             // 
-            this.comboBox_compositionDishes_idProducts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox_compositionDishes_idProducts.FormattingEnabled = true;
-            this.comboBox_compositionDishes_idProducts.Location = new System.Drawing.Point(287, 95);
-            this.comboBox_compositionDishes_idProducts.Name = "comboBox_compositionDishes_idProducts";
-            this.comboBox_compositionDishes_idProducts.Size = new System.Drawing.Size(220, 28);
-            this.comboBox_compositionDishes_idProducts.TabIndex = 29;
+            this.comboBox_compositionDishes_products.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox_compositionDishes_products.FormattingEnabled = true;
+            this.comboBox_compositionDishes_products.Location = new System.Drawing.Point(287, 95);
+            this.comboBox_compositionDishes_products.Name = "comboBox_compositionDishes_products";
+            this.comboBox_compositionDishes_products.Size = new System.Drawing.Size(220, 28);
+            this.comboBox_compositionDishes_products.TabIndex = 29;
             // 
-            // comboBox_compositionDishes_NameDishes
+            // comboBox_compositionDishes_dishes
             // 
-            this.comboBox_compositionDishes_NameDishes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox_compositionDishes_NameDishes.FormattingEnabled = true;
-            this.comboBox_compositionDishes_NameDishes.Location = new System.Drawing.Point(287, 30);
-            this.comboBox_compositionDishes_NameDishes.Name = "comboBox_compositionDishes_NameDishes";
-            this.comboBox_compositionDishes_NameDishes.Size = new System.Drawing.Size(220, 28);
-            this.comboBox_compositionDishes_NameDishes.TabIndex = 28;
+            this.comboBox_compositionDishes_dishes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox_compositionDishes_dishes.FormattingEnabled = true;
+            this.comboBox_compositionDishes_dishes.Location = new System.Drawing.Point(287, 30);
+            this.comboBox_compositionDishes_dishes.Name = "comboBox_compositionDishes_dishes";
+            this.comboBox_compositionDishes_dishes.Size = new System.Drawing.Size(220, 28);
+            this.comboBox_compositionDishes_dishes.TabIndex = 28;
             // 
             // label5
             // 
@@ -717,8 +717,8 @@
         private System.Windows.Forms.Button button_compositionDishes_add;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDown_compositionDishes_quantity;
-        private System.Windows.Forms.ComboBox comboBox_compositionDishes_idProducts;
-        private System.Windows.Forms.ComboBox comboBox_compositionDishes_NameDishes;
+        private System.Windows.Forms.ComboBox comboBox_compositionDishes_products;
+        private System.Windows.Forms.ComboBox comboBox_compositionDishes_dishes;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown numericUpDown_dishes_price;

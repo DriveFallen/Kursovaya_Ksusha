@@ -39,9 +39,9 @@ namespace SQLApp.Окна_редактирования
         private void button_add_Click(object sender, EventArgs e)
         {
             // проверка при добавлении, существует ли уже продукт с таким названием
-            string Proverka = "SELECT count(*) FROM Products WHERE idProducts = @ID";
+            string Proverka = "SELECT count(*) FROM Products WHERE idProducts = (SELECT idProducts WHERE NameProducts = @name)";
             SqlCommand Proverka_query = new SqlCommand(Proverka, connection);
-            SqlParameter proverka_product_id = new SqlParameter("@name", textBox_id_product.Text);
+            SqlParameter proverka_product_id = new SqlParameter("@name", textBox_name.Text);
 
             // запрос на добавление нового продукта
             string Add_product = "INSERT INTO Products VALUES (@name, @unit)"; // не прописываем ID так как стоит автоматический счёт в самой БД
@@ -57,7 +57,7 @@ namespace SQLApp.Окна_редактирования
                 Add_product_query.Parameters.Add(product_name);
                 Add_product_query.Parameters.Add(product_unit);
 
-                if (Convert.ToInt32(Proverka_query.ExecuteScalar()) <= 0)
+                if (Convert.ToInt32(Proverka_query.ExecuteScalar()) == 0)
                 {
                     if ((textBox_name.Text == string.Empty) || (textBox_unit.Text == string.Empty)) // проверка на незаполненые поля текст боксов
                     {
@@ -66,8 +66,13 @@ namespace SQLApp.Окна_редактирования
                     else
                     {
                         Add_product_query.ExecuteNonQuery();
+                        MessageBox.Show("Продук добавлен", "Успех!");
                     }
-                }            
+                }    
+                else
+                {
+                    MessageBox.Show("Такой продукт уже существует", "Ошибка!");
+                }
             }
             catch (Exception)
             {

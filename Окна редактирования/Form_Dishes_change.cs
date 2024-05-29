@@ -41,7 +41,7 @@ namespace SQLApp.Окна_редактирования
                 if (row.Cells[0].Value != null)
                 {
                     string cellValue = row.Cells[1].Value.ToString();
-                    comboBox_compositionDishes_NameDishes.Items.Add(cellValue);
+                    comboBox_compositionDishes_dishes.Items.Add(cellValue);
                 }
             }
 
@@ -51,7 +51,7 @@ namespace SQLApp.Окна_редактирования
                 if (row.Cells[0].Value != null)
                 {
                     string cellValue = row.Cells[1].Value.ToString();
-                    comboBox_compositionDishes_idProducts.Items.Add(cellValue);
+                    comboBox_compositionDishes_products.Items.Add(cellValue);
                 }
             }
 
@@ -202,9 +202,9 @@ namespace SQLApp.Окна_редактирования
         {
             string Add_compositionDishes = "INSERT INTO CompositionDishes (IdDishes, IdProducts, Quantity) SELECT Dishes.IdDishes, Products.idProducts, @quantity FROM Dishes, Products WHERE NameDishes = @nameDishes and NameProducts = @nameProduct";
             SqlCommand Add_compositionDishes_query = new SqlCommand(Add_compositionDishes, connection);
-            SqlParameter nameProduct = new SqlParameter("@nameProduct", comboBox_compositionDishes_idProducts.Text);
+            SqlParameter nameProduct = new SqlParameter("@nameProduct", comboBox_compositionDishes_products.Text);
             SqlParameter quantity = new SqlParameter("@quantity", numericUpDown_compositionDishes_quantity.Value); 
-            SqlParameter nameDishes = new SqlParameter("@nameDishes", comboBox_compositionDishes_NameDishes.Text);
+            SqlParameter nameDishes = new SqlParameter("@nameDishes", comboBox_compositionDishes_dishes.Text);
 
             try
             {
@@ -214,7 +214,7 @@ namespace SQLApp.Окна_редактирования
                 Add_compositionDishes_query.Parameters.Add(quantity);
                 Add_compositionDishes_query.Parameters.Add(nameDishes);
 
-                if (comboBox_compositionDishes_idProducts.Text == string.Empty) // проверка на незаполненые поля текст боксов
+                if (comboBox_compositionDishes_products.Text == string.Empty) // проверка на незаполненые поля текст боксов
                 {
                     MessageBox.Show("Есть незаполненые поля!", "Ошибка!");
                 }
@@ -236,12 +236,102 @@ namespace SQLApp.Окна_редактирования
 
         private void button_compositionDishes_change_Click(object sender, EventArgs e)
         {
+            string Proverka = "SELECT count(*) FROM CompositionDishes WHERE IdDishes = (SELECT IdDishes FROM Dishes WHERE NameDishes = @dishes) and IdProducts = (SELECT IdProducts FROM Products WHERE NameProducts = @product)";
+            SqlCommand Proverka_query = new SqlCommand(Proverka, connection);
+            SqlParameter proverka_dishes = new SqlParameter("@dishes", comboBox_compositionDishes_dishes.Text);
+            SqlParameter proverka_product = new SqlParameter("@product", comboBox_compositionDishes_products.Text);
 
+            string Change_compositionDishes = "UPDATE CompositionDishes SET Quantity = @quantity WHERE IdDishes = (SELECT IdDishes FROM Dishes WHERE NameDishes = @nameDishes) and IdProducts = (SELECT IdProducts FROM Products WHERE NameProducts = @nameProduct)";
+            SqlCommand Change_compositionDishes_query = new SqlCommand(Change_compositionDishes, connection);
+            SqlParameter compositionDishes_nameProduct = new SqlParameter("@nameProduct", comboBox_compositionDishes_products.Text);
+            SqlParameter compositionDishes_quantity = new SqlParameter("@quantity", numericUpDown_compositionDishes_quantity.Text);
+            SqlParameter compositionDishes_nameDishes = new SqlParameter("@nameDishes", comboBox_compositionDishes_dishes.Text);
+
+            try
+            {
+                connection.Open();
+
+                Proverka_query.Parameters.Add(proverka_dishes);
+                Proverka_query.Parameters.Add(proverka_product);
+                Change_compositionDishes_query.Parameters.Add(compositionDishes_nameProduct);
+                Change_compositionDishes_query.Parameters.Add(compositionDishes_quantity);
+                Change_compositionDishes_query.Parameters.Add(compositionDishes_nameDishes);
+
+                if (comboBox_compositionDishes_dishes.Text != string.Empty || comboBox_dishes_Categories.Text != string.Empty) // проверка на незаполненые поля
+                {
+                    if (Convert.ToInt32(Proverka_query.ExecuteScalar()) > 0) // проверка на существование блюда и продукта с такими ID в БД
+                    {
+                        Change_compositionDishes_query.ExecuteNonQuery();
+                        MessageBox.Show("Данные изменены", "Успешно");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Блюда с таким продуктом не найдено!", "Ошибка!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Есть незаполненые поля!", "Ошибка!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+            finally
+            {
+                connection.Close();
+                UpdateWindowInformation();
+            }
         }
 
         private void button_compositionDishes_delete_Click(object sender, EventArgs e)
         {
+            string Proverka = "SELECT count(*) FROM CompositionDishes WHERE IdDishes = (SELECT IdDishes FROM Dishes WHERE NameDishes = @dishes) and IdProducts = (SELECT IdProducts FROM Products WHERE NameProducts = @product)";
+            SqlCommand Proverka_query = new SqlCommand(Proverka, connection);
+            SqlParameter proverka_dishes = new SqlParameter("@dishes", comboBox_compositionDishes_dishes.Text);
+            SqlParameter proverka_product = new SqlParameter("@product", comboBox_compositionDishes_products.Text);
 
+            string Delete_compositionDishes = "DELETE FROM CompositionDishes WHERE IdDishes = (SELECT IdDishes FROM Dishes WHERE NameDishes = @nameDishes) and IdProducts = (SELECT IdProducts FROM Products WHERE NameProducts = @nameProduct)";
+            SqlCommand Delete_compositionDishes_query = new SqlCommand(Delete_compositionDishes, connection);
+            SqlParameter compositionDishes_nameProduct = new SqlParameter("@nameProduct", comboBox_compositionDishes_products.Text);
+            SqlParameter compositionDishes_nameDishes = new SqlParameter("@nameDishes", comboBox_compositionDishes_dishes.Text);
+
+            try
+            {
+                connection.Open();
+
+                Proverka_query.Parameters.Add(proverka_dishes);
+                Proverka_query.Parameters.Add(proverka_product);
+                Delete_compositionDishes_query.Parameters.Add(compositionDishes_nameProduct);
+                Delete_compositionDishes_query.Parameters.Add(compositionDishes_nameDishes);
+
+                if (comboBox_compositionDishes_dishes.Text != string.Empty || comboBox_dishes_Categories.Text != string.Empty) // проверка на незаполненые поля
+                {
+                    if (Convert.ToInt32(Proverka_query.ExecuteScalar()) > 0) // проверка на существование блюда и продукта с такими ID в БД
+                    {
+                        Delete_compositionDishes_query.ExecuteNonQuery();
+                        MessageBox.Show("Продук удален из состава блюда", "Успешно");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Блюда с таким продуктом не найдено!", "Ошибка!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Есть незаполненые поля!", "Ошибка!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+            finally
+            {
+                connection.Close();
+                UpdateWindowInformation();
+            }
         }
         #endregion
 

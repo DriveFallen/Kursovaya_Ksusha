@@ -220,7 +220,41 @@ namespace SQLApp.Окна_редактирования
 
         private void button_orders_add_Click(object sender, EventArgs e)
         {
+            string Add_orders = "INSERT INTO Orders (DateTimeOrders, IdEmployees, IdClients, NumberTables, PriceOrders) SELECT @dateTime, Employees.IdEmployees, Clients.IdClients, @table, 0 FROM Employees, Clients WHERE Employees.FullName = @employer and Clients.FullName = @client"; // не прописываем ID так как стоит автоматический счёт в самой БД
+            SqlCommand Add_orders_query = new SqlCommand(Add_orders, connection);
+            SqlParameter Orders_dateTime = new SqlParameter("@dateTime", dateTimePicker_orders_dateTime.Value);
+            SqlParameter Orders_employer = new SqlParameter("@employer", comboBox_orders_employer.Text);
+            SqlParameter Orders_client = new SqlParameter("@client", comboBox_orders_client.Text);
+            SqlParameter Orders_table = new SqlParameter("@table", textBox_orders_numberTable.Text);         
 
+            try
+            {
+                connection.Open();
+
+                Add_orders_query.Parameters.Add(Orders_dateTime);
+                Add_orders_query.Parameters.Add(Orders_employer);
+                Add_orders_query.Parameters.Add(Orders_client);
+                Add_orders_query.Parameters.Add(Orders_table);
+
+                if (comboBox_orders_employer.Text != string.Empty || comboBox_orders_client.Text != string.Empty || textBox_orders_numberTable.Text != string.Empty) // проверка на незаполненые поля
+                {
+                    Add_orders_query.ExecuteNonQuery();
+                    MessageBox.Show("Заказ добавлен", "Успех");
+                }
+                else
+                {
+                    MessageBox.Show("Есть незаполненые поля!", "Ошибка!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+            finally
+            {
+                connection.Close();
+                UpdateWindowInformation();
+            }
         }
 
         private void button_orders_change_Click(object sender, EventArgs e)
