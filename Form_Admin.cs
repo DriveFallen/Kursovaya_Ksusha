@@ -160,7 +160,9 @@ namespace SQLApp
         }
         private void button_tableOrderChange_Click(object sender, EventArgs e)
         {
-
+            Form_Orders form = new Form_Orders();
+            form.Show();
+            this.Close();
         }
 
 

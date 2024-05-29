@@ -84,6 +84,12 @@
     <Compile Include="Окна редактирования\Form_Employees.Designer.cs">
       <DependentUpon>Form_Employees.cs</DependentUpon>
     </Compile>
+    <Compile Include="Окна редактирования\Form_Orders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Окна редактирования\Form_Orders.Designer.cs">
+      <DependentUpon>Form_Orders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Окна редактирования\Form_Products_change.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Окна редактирования\Form_Employees.resx">
       <DependentUpon>Form_Employees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Окна редактирования\Form_Orders.resx">
+      <DependentUpon>Form_Orders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Окна редактирования\Form_Products_change.resx">
       <DependentUpon>Form_Products_change.cs</DependentUpon>
