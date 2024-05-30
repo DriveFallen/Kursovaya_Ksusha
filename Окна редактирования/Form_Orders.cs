@@ -23,6 +23,18 @@ namespace SQLApp.Окна_редактирования
             // TODO: данная строка кода позволяет загрузить данные в таблицу "restoranDataSet.StatusPreOrders". При необходимости она может быть перемещена или удалена.
             this.statusPreOrdersTableAdapter.Fill(this.restoranDataSet.StatusPreOrders);
 
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "restoranDataSet.Clients". При необходимости она может быть перемещена или удалена.
+            this.clientsTableAdapter.Fill(this.restoranDataSet.Clients);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "restoranDataSet.Employees". При необходимости она может быть перемещена или удалена.
+            this.employeesTableAdapter.Fill(this.restoranDataSet.Employees);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "restoranDataSet.Dishes". При необходимости она может быть перемещена или удалена.
+            this.dishesTableAdapter.Fill(this.restoranDataSet.Dishes);
+
+            comboBox_preOrders_status.Items.Clear();
+            comboBox_preOrders_dishes.Items.Clear();
+            comboBox_orders_employer.Items.Clear();
+            comboBox_orders_client.Items.Clear();
+
             // заполняем комбо-бокс с статусами заказов из таблицы Статусы
             foreach (DataGridViewRow row in dataGridView_statusPreOrders.Rows)
             {
@@ -66,13 +78,6 @@ namespace SQLApp.Окна_редактирования
 
         private void Form_Orders_Load(object sender, EventArgs e)
         {
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "restoranDataSet.Clients". При необходимости она может быть перемещена или удалена.
-            this.clientsTableAdapter.Fill(this.restoranDataSet.Clients);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "restoranDataSet.Employees". При необходимости она может быть перемещена или удалена.
-            this.employeesTableAdapter.Fill(this.restoranDataSet.Employees);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "restoranDataSet.Dishes". При необходимости она может быть перемещена или удалена.
-            this.dishesTableAdapter.Fill(this.restoranDataSet.Dishes);
-
             UpdateWindowInformation();
         }
 
@@ -204,17 +209,157 @@ namespace SQLApp.Окна_редактирования
 
         private void button_preOrders_add_Click(object sender, EventArgs e)
         {
+            string Proverka = "SELECT count(*) FROM PreOrders WHERE IdOrders = @idOrder and IdDishes = (SELECT IdDishes FROM Dishes WHERE NameDishes = @dishes)";
+            SqlCommand Proverka_query = new SqlCommand(Proverka, connection);
+            SqlParameter proverka_dishes = new SqlParameter("@dishes", comboBox_preOrders_dishes.Text);
+            SqlParameter proverka_order = new SqlParameter("@idOrder", textBox_preOrders_idOrders.Text);
 
+            string Add_preOrders = "INSERT INTO PreOrders (IdOrders, IdDishes, Quantity, IdStatus) VALUES (@idOrder, (SELECT IdDishes FROM Dishes WHERE NameDishes = @dishes), @quantity, (SELECT IdStatus FROM StatusPreOrders WHERE NameStatus = @status))";
+            SqlCommand Add_preOrders_query = new SqlCommand(Add_preOrders, connection);
+            SqlParameter idOrder = new SqlParameter("@idOrder", textBox_preOrders_idOrders.Text);
+            SqlParameter dishes = new SqlParameter("@dishes", comboBox_preOrders_dishes.Text);
+            SqlParameter quantity = new SqlParameter("@quantity", numericUpDown_preOrders_quantity.Text);
+            SqlParameter status = new SqlParameter("@status", comboBox_preOrders_status.Text);
+
+            try
+            {
+                connection.Open();
+
+                Proverka_query.Parameters.Add(proverka_dishes);
+                Proverka_query.Parameters.Add(proverka_order);
+                Add_preOrders_query.Parameters.Add(idOrder);
+                Add_preOrders_query.Parameters.Add(dishes);
+                Add_preOrders_query.Parameters.Add(quantity);
+                Add_preOrders_query.Parameters.Add(status);
+
+                if (textBox_preOrders_idOrders.Text != null || comboBox_preOrders_dishes.Text != null || comboBox_preOrders_status != null) // проверка на незаполненые поля
+                {
+                    if (Convert.ToInt32(Proverka_query.ExecuteScalar()) == 0)
+                    {
+                        Add_preOrders_query.ExecuteNonQuery();
+                        MessageBox.Show("Информация о заказе добавлена!", "Успех!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("В заказе уже есть такое блюдо, попробуйте изменить количество!", "Ошибка!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Есть незаполненые поля!", "Ошибка!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+            finally
+            {
+                connection.Close();
+                UpdateWindowInformation();
+            }
         }
 
         private void button_preOrders_change_Click(object sender, EventArgs e)
         {
+            string Proverka = "SELECT count(*) FROM PreOrders WHERE IdDishes = (SELECT IdDishes FROM Dishes WHERE NameDishes = @dishes) and IdOrders = @idOrder";
+            SqlCommand Proverka_query = new SqlCommand(Proverka, connection);
+            SqlParameter proverka_dishes = new SqlParameter("@dishes", comboBox_preOrders_dishes.Text);
+            SqlParameter proverka_order = new SqlParameter("@idOrder", textBox_preOrders_idOrders.Text);
 
+            string Change_PreOrders = "UPDATE PreOrders SET Quantity = @quantity, IdStatus = (SELECT IdStatus FROM StatusPreOrders WHERE NameStatus = @status) WHERE IdDishes = (SELECT IdDishes FROM Dishes WHERE NameDishes = @nameDishes) and IdOrders = @idOrder";
+            SqlCommand Change_PreOrders_query = new SqlCommand(Change_PreOrders, connection);
+            SqlParameter preOrders_quantity = new SqlParameter("@quantity", numericUpDown_preOrders_quantity.Text);
+            SqlParameter preOrders_status = new SqlParameter("@status", comboBox_preOrders_status.Text);
+            SqlParameter preOrders_nameDishes = new SqlParameter("@nameDishes", comboBox_preOrders_dishes.Text);
+            SqlParameter preOrders_idOrder = new SqlParameter("@idOrder", textBox_preOrders_idOrders.Text);
+
+            try
+            {
+                connection.Open();
+
+                Proverka_query.Parameters.Add(proverka_dishes);
+                Proverka_query.Parameters.Add(proverka_order);
+                Change_PreOrders_query.Parameters.Add(preOrders_quantity);
+                Change_PreOrders_query.Parameters.Add(preOrders_status);
+                Change_PreOrders_query.Parameters.Add(preOrders_nameDishes);
+                Change_PreOrders_query.Parameters.Add(preOrders_idOrder);
+
+                if (comboBox_preOrders_dishes.Text != null || textBox_preOrders_idOrders.Text != null || comboBox_preOrders_status.Text != null) // проверка на незаполненые поля
+                {
+                    if (Convert.ToInt32(Proverka_query.ExecuteScalar()) > 0) // проверка на существование заказа и блюда в нём с такими ID в БД
+                    {
+                        Change_PreOrders_query.ExecuteNonQuery();
+                        MessageBox.Show("Данные изменены", "Успешно");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Заказа с таким ID и с таким блюдом не найдено!", "Ошибка!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Есть незаполненые поля!", "Ошибка!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+            finally
+            {
+                connection.Close();
+                UpdateWindowInformation();
+            }
         }
 
         private void button_preOrders_delete_Click(object sender, EventArgs e)
         {
+            string Proverka = "SELECT count(*) FROM PreOrders WHERE IdDishes = (SELECT IdDishes FROM Dishes WHERE NameDishes = @dishes) and IdOrders = @idOrder";
+            SqlCommand Proverka_query = new SqlCommand(Proverka, connection);
+            SqlParameter proverka_dishes = new SqlParameter("@dishes", comboBox_preOrders_dishes.Text);
+            SqlParameter proverka_order = new SqlParameter("@idOrder", textBox_preOrders_idOrders.Text);
 
+            string Delete_preOrders = "DELETE FROM preOrders WHERE IdOrders = @idOrder and IdDishes = (SELECT IdDishes FROM Dishes WHERE NameDishes = @dishes)";
+            SqlCommand Delete_preOrders_query = new SqlCommand(Delete_preOrders, connection);
+            SqlParameter preOrders_idOrder = new SqlParameter("@idOrder", textBox_preOrders_idOrders.Text);
+            SqlParameter preOrders_dishes = new SqlParameter("@dishes", comboBox_preOrders_dishes.Text);
+
+            try
+            {
+                connection.Open();
+
+                Proverka_query.Parameters.Add(proverka_dishes);
+                Proverka_query.Parameters.Add(proverka_order);
+                Delete_preOrders_query.Parameters.Add(preOrders_idOrder);
+                Delete_preOrders_query.Parameters.Add(preOrders_dishes);
+
+                if (textBox_preOrders_idOrders.Text != string.Empty || comboBox_preOrders_dishes.Text != string.Empty) // проверка на незаполненые поля
+                {
+                    if (Convert.ToInt32(Proverka_query.ExecuteScalar()) > 0)
+                    {
+                        Delete_preOrders_query.ExecuteNonQuery();
+                        MessageBox.Show("Блюдо удалено из состава заказа", "Успешно");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Заказа с таким ID и с таким блюдом не найдено!", "Ошибка!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Есть незаполненые поля!", "Ошибка!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+            finally
+            {
+                connection.Close();
+                UpdateWindowInformation();
+            }
         }
 
 
@@ -259,12 +404,100 @@ namespace SQLApp.Окна_редактирования
 
         private void button_orders_change_Click(object sender, EventArgs e)
         {
+            string Proverka = "SELECT count(*) FROM Orders WHERE IdOrders = @idOrder";
+            SqlCommand Proverka_query = new SqlCommand(Proverka, connection);
+            SqlParameter proverka_idOrders = new SqlParameter("@idOrder", textBox_orders_id.Text);
 
+            string Change_orders = "UPDATE Orders SET DateTimeOrders = @dateTime, IdEmployees = (SELECT IdEmployees FROM Employees WHERE FullName = @employer), IdClients = (SELECT IdClients FROM Clients WHERE FullName = @client), NumberTables = @table WHERE IdOrders = @idOrder;";
+            SqlCommand Change_orders_query = new SqlCommand(Change_orders, connection);
+            SqlParameter orders_dateTime = new SqlParameter("@dateTime", dateTimePicker_orders_dateTime.Value);
+            SqlParameter orders_employer = new SqlParameter("@employer", comboBox_orders_employer.Text);
+            SqlParameter orders_client = new SqlParameter("@client", comboBox_orders_client.Text);
+            SqlParameter orders_table = new SqlParameter("@table", textBox_orders_numberTable.Text);
+            SqlParameter orders_id = new SqlParameter("@idOrder", textBox_orders_id.Text);
+
+            try
+            {
+                connection.Open();
+
+                Proverka_query.Parameters.Add(proverka_idOrders);
+                Change_orders_query.Parameters.Add(orders_dateTime);
+                Change_orders_query.Parameters.Add(orders_employer);
+                Change_orders_query.Parameters.Add(orders_client);
+                Change_orders_query.Parameters.Add(orders_table);
+                Change_orders_query.Parameters.Add(orders_id);
+
+                if (textBox_orders_id.Text != null || comboBox_orders_employer.Text != null || comboBox_orders_client.Text != null || textBox_orders_numberTable.Text != null) // проверка на незаполненые поля
+                {
+                    if (Convert.ToInt32(Proverka_query.ExecuteScalar()) == 1) // проверка на существование заказа с таким ID в БД
+                    {
+                        Change_orders_query.ExecuteNonQuery();
+                        MessageBox.Show("Данные о заказе изменены", "Успешно");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Заказ не найден!", "Ошибка!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Есть незаполненые поля!", "Ошибка!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+            finally
+            {
+                connection.Close();
+                UpdateWindowInformation();
+            }
         }
 
         private void button_orders_delete_Click(object sender, EventArgs e)
         {
+            string Proverka = "SELECT count(*) FROM Orders WHERE IdOrders = @idOrder";
+            SqlCommand Proverka_query = new SqlCommand(Proverka, connection);
+            SqlParameter proverka_idOrders = new SqlParameter("@idOrder", textBox_orders_id.Text);
 
+            string Delete_orders = "DELETE FROM Orders WHERE IdOrders = @idOrder;";
+            SqlCommand Delete_orders_query = new SqlCommand(Delete_orders, connection);
+            SqlParameter orders_id = new SqlParameter("@idOrder", textBox_orders_id.Text);
+
+            try
+            {
+                connection.Open();
+
+                Proverka_query.Parameters.Add(proverka_idOrders);
+                Delete_orders_query.Parameters.Add(orders_id);
+
+                if (textBox_orders_id.Text != null) // проверка на незаполненые поля
+                {
+                    if (Convert.ToInt32(Proverka_query.ExecuteScalar()) == 1) // проверка на существование заказа с таким ID в БД
+                    {
+                        Delete_orders_query.ExecuteNonQuery();
+                        MessageBox.Show("Заказ удален", "Успешно");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Заказ не найден или не существует!", "Ошибка!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Есть незаполненые поля!", "Ошибка!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+            finally
+            {
+                connection.Close();
+                UpdateWindowInformation();
+            }
         }
 
 

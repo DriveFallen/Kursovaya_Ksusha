@@ -35,6 +35,10 @@ namespace SQLApp.Окна_редактирования
             // TODO: данная строка кода позволяет загрузить данные в таблицу "restoranDataSet.Dishes". При необходимости она может быть перемещена или удалена.
             this.dishesTableAdapter.Fill(this.restoranDataSet.Dishes);
 
+            comboBox_compositionDishes_dishes.Items.Clear();
+            comboBox_compositionDishes_products.Items.Clear();
+            comboBox_dishes_Categories.Items.Clear();
+
             // заполняем комбо-бокс с названиями блюд из таблицы Блюда
             foreach (DataGridViewRow row in dataGridView_Dishes.Rows)
             {

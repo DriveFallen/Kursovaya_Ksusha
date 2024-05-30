@@ -84,26 +84,26 @@
             this.comboBox_orders_client = new System.Windows.Forms.ComboBox();
             this.textBox_statusPreOrders_nameStatus = new System.Windows.Forms.TextBox();
             this.dataGridView_dishes = new System.Windows.Forms.DataGridView();
-            this.dishesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dishesTableAdapter = new SQLApp.RestoranDataSetTableAdapters.DishesTableAdapter();
             this.idDishesDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDishesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idCategoriesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dishesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dishesTableAdapter = new SQLApp.RestoranDataSetTableAdapters.DishesTableAdapter();
             this.dataGridView_employers = new System.Windows.Forms.DataGridView();
-            this.employeesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.employeesTableAdapter = new SQLApp.RestoranDataSetTableAdapters.EmployeesTableAdapter();
             this.idEmployeesDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.postDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.loginDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employeesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.employeesTableAdapter = new SQLApp.RestoranDataSetTableAdapters.EmployeesTableAdapter();
             this.dataGridView_clients = new System.Windows.Forms.DataGridView();
-            this.clientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.clientsTableAdapter = new SQLApp.RestoranDataSetTableAdapters.ClientsTableAdapter();
             this.idClientsDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.clientsTableAdapter = new SQLApp.RestoranDataSetTableAdapters.ClientsTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_statusPreOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusPreOrdersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.restoranDataSet)).BeginInit();
@@ -592,6 +592,7 @@
             // 
             this.textBox_statusPreOrders_nameStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox_statusPreOrders_nameStatus.Location = new System.Drawing.Point(13, 114);
+            this.textBox_statusPreOrders_nameStatus.MaxLength = 10;
             this.textBox_statusPreOrders_nameStatus.Name = "textBox_statusPreOrders_nameStatus";
             this.textBox_statusPreOrders_nameStatus.Size = new System.Drawing.Size(220, 29);
             this.textBox_statusPreOrders_nameStatus.TabIndex = 29;
@@ -606,20 +607,11 @@
             this.priceDataGridViewTextBoxColumn,
             this.idCategoriesDataGridViewTextBoxColumn});
             this.dataGridView_dishes.DataSource = this.dishesBindingSource;
-            this.dataGridView_dishes.Location = new System.Drawing.Point(653, 266);
+            this.dataGridView_dishes.Location = new System.Drawing.Point(656, 266);
             this.dataGridView_dishes.Name = "dataGridView_dishes";
-            this.dataGridView_dishes.Size = new System.Drawing.Size(94, 83);
+            this.dataGridView_dishes.Size = new System.Drawing.Size(91, 83);
             this.dataGridView_dishes.TabIndex = 66;
             this.dataGridView_dishes.Visible = false;
-            // 
-            // dishesBindingSource
-            // 
-            this.dishesBindingSource.DataMember = "Dishes";
-            this.dishesBindingSource.DataSource = this.restoranDataSet;
-            // 
-            // dishesTableAdapter
-            // 
-            this.dishesTableAdapter.ClearBeforeFill = true;
             // 
             // idDishesDataGridViewTextBoxColumn1
             // 
@@ -646,6 +638,15 @@
             this.idCategoriesDataGridViewTextBoxColumn.HeaderText = "IdCategories";
             this.idCategoriesDataGridViewTextBoxColumn.Name = "idCategoriesDataGridViewTextBoxColumn";
             // 
+            // dishesBindingSource
+            // 
+            this.dishesBindingSource.DataMember = "Dishes";
+            this.dishesBindingSource.DataSource = this.restoranDataSet;
+            // 
+            // dishesTableAdapter
+            // 
+            this.dishesTableAdapter.ClearBeforeFill = true;
+            // 
             // dataGridView_employers
             // 
             this.dataGridView_employers.AutoGenerateColumns = false;
@@ -663,15 +664,6 @@
             this.dataGridView_employers.Size = new System.Drawing.Size(91, 83);
             this.dataGridView_employers.TabIndex = 67;
             this.dataGridView_employers.Visible = false;
-            // 
-            // employeesBindingSource
-            // 
-            this.employeesBindingSource.DataMember = "Employees";
-            this.employeesBindingSource.DataSource = this.restoranDataSet;
-            // 
-            // employeesTableAdapter
-            // 
-            this.employeesTableAdapter.ClearBeforeFill = true;
             // 
             // idEmployeesDataGridViewTextBoxColumn1
             // 
@@ -710,6 +702,15 @@
             this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
             this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
             // 
+            // employeesBindingSource
+            // 
+            this.employeesBindingSource.DataMember = "Employees";
+            this.employeesBindingSource.DataSource = this.restoranDataSet;
+            // 
+            // employeesTableAdapter
+            // 
+            this.employeesTableAdapter.ClearBeforeFill = true;
+            // 
             // dataGridView_clients
             // 
             this.dataGridView_clients.AutoGenerateColumns = false;
@@ -724,15 +725,6 @@
             this.dataGridView_clients.TabIndex = 68;
             this.dataGridView_clients.Visible = false;
             // 
-            // clientsBindingSource
-            // 
-            this.clientsBindingSource.DataMember = "Clients";
-            this.clientsBindingSource.DataSource = this.restoranDataSet;
-            // 
-            // clientsTableAdapter
-            // 
-            this.clientsTableAdapter.ClearBeforeFill = true;
-            // 
             // idClientsDataGridViewTextBoxColumn1
             // 
             this.idClientsDataGridViewTextBoxColumn1.DataPropertyName = "IdClients";
@@ -745,6 +737,15 @@
             this.fullNameDataGridViewTextBoxColumn1.DataPropertyName = "FullName";
             this.fullNameDataGridViewTextBoxColumn1.HeaderText = "FullName";
             this.fullNameDataGridViewTextBoxColumn1.Name = "fullNameDataGridViewTextBoxColumn1";
+            // 
+            // clientsBindingSource
+            // 
+            this.clientsBindingSource.DataMember = "Clients";
+            this.clientsBindingSource.DataSource = this.restoranDataSet;
+            // 
+            // clientsTableAdapter
+            // 
+            this.clientsTableAdapter.ClearBeforeFill = true;
             // 
             // Form_Orders
             // 
