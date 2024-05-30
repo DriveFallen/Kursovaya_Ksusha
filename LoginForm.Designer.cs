@@ -85,7 +85,6 @@
             this.PassField.Name = "PassField";
             this.PassField.Size = new System.Drawing.Size(147, 26);
             this.PassField.TabIndex = 4;
-            this.PassField.Text = "12345";
             this.PassField.UseSystemPasswordChar = true;
             // 
             // pictureBox2
@@ -107,7 +106,6 @@
             this.LoginField.Name = "LoginField";
             this.LoginField.Size = new System.Drawing.Size(147, 26);
             this.LoginField.TabIndex = 2;
-            this.LoginField.Text = "Ksu";
             // 
             // pictureBox1
             // 

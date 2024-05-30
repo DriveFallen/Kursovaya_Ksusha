@@ -74,14 +74,14 @@ namespace SQLApp
             SqlParameter parametr_login = new SqlParameter("@login", LoginField.Text);
             Select_Login.Parameters.Add(parametr_login);
 
-            string Query_2 = "Select count(*) from Employees where Login = @login and Password = @password";
+            string Query_2 = "Select count(*) from Employees where Login = @login and HashPassword = HASHBYTES('SHA2_512', @password)";
             SqlCommand Select_Log_Pass = new SqlCommand(Query_2, connection);
             SqlParameter parametr_login_2 = new SqlParameter("@login", LoginField.Text);
             SqlParameter parametr_password_2 = new SqlParameter("@password", PassField.Text);
             Select_Log_Pass.Parameters.Add(parametr_login_2);
             Select_Log_Pass.Parameters.Add(parametr_password_2);
 
-            string Query_3 = "Select count(*) from Employees where Login = @login and Password = @password and Post = 'Admin'";
+            string Query_3 = "Select count(*) from Employees where Login = @login and HashPassword = HASHBYTES('SHA2_512', @password) and Post = 'Admin'";
             SqlCommand Select_Login_Pass_Adm = new SqlCommand(Query_3, connection);
             SqlParameter parametr_login_3 = new SqlParameter("@login", LoginField.Text);
             SqlParameter parametr_password_3 = new SqlParameter("@password", PassField.Text);

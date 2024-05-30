@@ -32,7 +32,7 @@ namespace SQLApp.Окна_редактирования
             SqlCommand Proverka_query = new SqlCommand(Proverka, connection);
             SqlParameter proverka_login = new SqlParameter("@login", textBox_employees_login.Text);
 
-            string Add = "INSERT INTO Employees VALUES (@fullName, @number, @post, @login, @password)"; // не прописываем ID так как стоит автоматический счёт в самой БД
+            string Add = "INSERT INTO Employees VALUES (@fullName, @number, @post, @login, @password, HASHBYTES('SHA2_512', @password))"; // не прописываем ID так как стоит автоматический счёт в самой БД
             SqlCommand Add_query = new SqlCommand(Add, connection);
             SqlParameter fullName = new SqlParameter("@fullName", textBox_employees_fullName.Text);
             SqlParameter number = new SqlParameter("@number", textBox_employees_number.Text);
@@ -85,7 +85,7 @@ namespace SQLApp.Окна_редактирования
             SqlCommand Proverka_query = new SqlCommand(Proverka, connection);
             SqlParameter proverka_ID = new SqlParameter("@ID", textBox_employees_id.Text);
 
-            string Change = "UPDATE Employees SET FullName = @fullName, PhoneNumber = @number, Post = @post, Login = @login, Password = @password WHERE IdEmployees = @ID";
+            string Change = "UPDATE Employees SET FullName = @fullName, PhoneNumber = @number, Post = @post, Login = @login, Password = @password, HashPassword = HASHBYTES('SHA2_512', @password) WHERE IdEmployees = @ID";
             SqlCommand Change_query = new SqlCommand(Change, connection);
             SqlParameter ID = new SqlParameter("@ID", textBox_employees_id.Text);
             SqlParameter fullName = new SqlParameter("@fullName", textBox_employees_fullName.Text);
