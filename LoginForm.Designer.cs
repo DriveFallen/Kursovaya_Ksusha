@@ -37,6 +37,7 @@
             this.TopPanel = new System.Windows.Forms.Panel();
             this.CloseButton = new System.Windows.Forms.Label();
             this.TopLabel = new System.Windows.Forms.Label();
+            this.button_tryConnection = new System.Windows.Forms.Button();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -46,6 +47,7 @@
             // MainPanel
             // 
             this.MainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(35)))), ((int)(((byte)(19)))));
+            this.MainPanel.Controls.Add(this.button_tryConnection);
             this.MainPanel.Controls.Add(this.button_sign);
             this.MainPanel.Controls.Add(this.PassField);
             this.MainPanel.Controls.Add(this.pictureBox2);
@@ -161,6 +163,16 @@
             this.TopLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopLabel_MouseDown);
             this.TopLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopLabel_MouseMove);
             // 
+            // button_tryConnection
+            // 
+            this.button_tryConnection.Location = new System.Drawing.Point(277, 108);
+            this.button_tryConnection.Name = "button_tryConnection";
+            this.button_tryConnection.Size = new System.Drawing.Size(75, 23);
+            this.button_tryConnection.TabIndex = 6;
+            this.button_tryConnection.Text = "Соединение";
+            this.button_tryConnection.UseVisualStyleBackColor = true;
+            this.button_tryConnection.Click += new System.EventHandler(this.button_tryConnection_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -193,6 +205,7 @@
         private System.Windows.Forms.Label TopLabel;
         private System.Windows.Forms.Button button_sign;
         private System.Windows.Forms.Label CloseButton;
+        private System.Windows.Forms.Button button_tryConnection;
     }
 }
 

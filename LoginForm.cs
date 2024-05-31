@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SQLApp
@@ -125,6 +118,34 @@ namespace SQLApp
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "пиздец");
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        private void button_tryConnection_Click(object sender, EventArgs e)
+        {
+            string Query = "SELECT DB_NAME() AS [Restoran]";
+            SqlCommand Proverka = new SqlCommand(Query, connection);
+
+            try
+            {
+                connection.Open();
+
+                if (Proverka.ExecuteScalar() != null)
+                {
+                    MessageBox.Show("Соединение установлено!", "Успех");
+                }
+                else
+                {
+                    MessageBox.Show("Нет соединения!", "Ошибка");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error");
             }
             finally
             {
