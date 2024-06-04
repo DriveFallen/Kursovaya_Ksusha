@@ -85,6 +85,7 @@
             this.idClientsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productsTableAdapter = new SQLApp.RestoranDataSetTableAdapters.ProductsTableAdapter();
+            this.button_filter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_products)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.restoranDataSet)).BeginInit();
@@ -127,9 +128,9 @@
             this.nameProductsDataGridViewTextBoxColumn,
             this.unitDataGridViewTextBoxColumn});
             this.dataGridView_products.DataSource = this.productsBindingSource;
-            this.dataGridView_products.Location = new System.Drawing.Point(12, 228);
+            this.dataGridView_products.Location = new System.Drawing.Point(12, 259);
             this.dataGridView_products.Name = "dataGridView_products";
-            this.dataGridView_products.Size = new System.Drawing.Size(1158, 401);
+            this.dataGridView_products.Size = new System.Drawing.Size(1158, 59);
             this.dataGridView_products.TabIndex = 1;
             this.dataGridView_products.Visible = false;
             // 
@@ -180,9 +181,9 @@
             this.idProductsDataGridViewTextBoxColumn,
             this.quantityDataGridViewTextBoxColumn});
             this.dataGridView_compositionDishes.DataSource = this.compositionDishesBindingSource;
-            this.dataGridView_compositionDishes.Location = new System.Drawing.Point(807, 228);
+            this.dataGridView_compositionDishes.Location = new System.Drawing.Point(807, 324);
             this.dataGridView_compositionDishes.Name = "dataGridView_compositionDishes";
-            this.dataGridView_compositionDishes.Size = new System.Drawing.Size(363, 401);
+            this.dataGridView_compositionDishes.Size = new System.Drawing.Size(363, 61);
             this.dataGridView_compositionDishes.TabIndex = 2;
             this.dataGridView_compositionDishes.Visible = false;
             // 
@@ -223,9 +224,9 @@
             this.priceDataGridViewTextBoxColumn,
             this.idCategoriesDataGridViewTextBoxColumn});
             this.dataGridView_dishes.DataSource = this.dishesBindingSource;
-            this.dataGridView_dishes.Location = new System.Drawing.Point(352, 228);
+            this.dataGridView_dishes.Location = new System.Drawing.Point(343, 324);
             this.dataGridView_dishes.Name = "dataGridView_dishes";
-            this.dataGridView_dishes.Size = new System.Drawing.Size(458, 401);
+            this.dataGridView_dishes.Size = new System.Drawing.Size(458, 61);
             this.dataGridView_dishes.TabIndex = 3;
             this.dataGridView_dishes.Visible = false;
             // 
@@ -271,9 +272,9 @@
             this.idCategoriesDataGridViewTextBoxColumn1,
             this.nameCategoriesDataGridViewTextBoxColumn});
             this.dataGridView_dishesCategories.DataSource = this.dishesCategoriesBindingSource;
-            this.dataGridView_dishesCategories.Location = new System.Drawing.Point(12, 228);
+            this.dataGridView_dishesCategories.Location = new System.Drawing.Point(12, 324);
             this.dataGridView_dishesCategories.Name = "dataGridView_dishesCategories";
-            this.dataGridView_dishesCategories.Size = new System.Drawing.Size(325, 401);
+            this.dataGridView_dishesCategories.Size = new System.Drawing.Size(325, 61);
             this.dataGridView_dishesCategories.TabIndex = 4;
             this.dataGridView_dishesCategories.Visible = false;
             // 
@@ -306,9 +307,9 @@
             this.dataGridView_employees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2});
             this.dataGridView_employees.DataSource = this.employeesBindingSource;
-            this.dataGridView_employees.Location = new System.Drawing.Point(12, 228);
+            this.dataGridView_employees.Location = new System.Drawing.Point(12, 556);
             this.dataGridView_employees.Name = "dataGridView_employees";
-            this.dataGridView_employees.Size = new System.Drawing.Size(1158, 401);
+            this.dataGridView_employees.Size = new System.Drawing.Size(1158, 73);
             this.dataGridView_employees.TabIndex = 5;
             this.dataGridView_employees.Visible = false;
             // 
@@ -334,9 +335,9 @@
             this.dataGridView_orders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1});
             this.dataGridView_orders.DataSource = this.ordersBindingSource;
-            this.dataGridView_orders.Location = new System.Drawing.Point(12, 228);
+            this.dataGridView_orders.Location = new System.Drawing.Point(12, 391);
             this.dataGridView_orders.Name = "dataGridView_orders";
-            this.dataGridView_orders.Size = new System.Drawing.Size(232, 401);
+            this.dataGridView_orders.Size = new System.Drawing.Size(232, 73);
             this.dataGridView_orders.TabIndex = 6;
             this.dataGridView_orders.Visible = false;
             // 
@@ -366,9 +367,9 @@
             this.quantityDataGridViewTextBoxColumn1,
             this.idStatusDataGridViewTextBoxColumn});
             this.dataGridView_preOrders.DataSource = this.preOrdersBindingSource;
-            this.dataGridView_preOrders.Location = new System.Drawing.Point(250, 228);
+            this.dataGridView_preOrders.Location = new System.Drawing.Point(259, 392);
             this.dataGridView_preOrders.Name = "dataGridView_preOrders";
-            this.dataGridView_preOrders.Size = new System.Drawing.Size(471, 401);
+            this.dataGridView_preOrders.Size = new System.Drawing.Size(471, 72);
             this.dataGridView_preOrders.TabIndex = 7;
             this.dataGridView_preOrders.Visible = false;
             // 
@@ -413,9 +414,9 @@
             this.idStatusDataGridViewTextBoxColumn1,
             this.nameStatusDataGridViewTextBoxColumn});
             this.dataGridView_statusPreOrders.DataSource = this.statusPreOrdersBindingSource;
-            this.dataGridView_statusPreOrders.Location = new System.Drawing.Point(746, 228);
+            this.dataGridView_statusPreOrders.Location = new System.Drawing.Point(746, 392);
             this.dataGridView_statusPreOrders.Name = "dataGridView_statusPreOrders";
-            this.dataGridView_statusPreOrders.Size = new System.Drawing.Size(424, 401);
+            this.dataGridView_statusPreOrders.Size = new System.Drawing.Size(424, 72);
             this.dataGridView_statusPreOrders.TabIndex = 8;
             this.dataGridView_statusPreOrders.Visible = false;
             // 
@@ -509,9 +510,9 @@
             this.idClientsDataGridViewTextBoxColumn,
             this.fullNameDataGridViewTextBoxColumn});
             this.dataGridView_clients.DataSource = this.clientsBindingSource;
-            this.dataGridView_clients.Location = new System.Drawing.Point(12, 228);
+            this.dataGridView_clients.Location = new System.Drawing.Point(12, 470);
             this.dataGridView_clients.Name = "dataGridView_clients";
-            this.dataGridView_clients.Size = new System.Drawing.Size(465, 401);
+            this.dataGridView_clients.Size = new System.Drawing.Size(465, 80);
             this.dataGridView_clients.TabIndex = 19;
             this.dataGridView_clients.Visible = false;
             // 
@@ -532,12 +533,25 @@
             // 
             this.productsTableAdapter.ClearBeforeFill = true;
             // 
+            // button_filter
+            // 
+            this.button_filter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.button_filter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_filter.Location = new System.Drawing.Point(727, 12);
+            this.button_filter.Name = "button_filter";
+            this.button_filter.Size = new System.Drawing.Size(137, 45);
+            this.button_filter.TabIndex = 20;
+            this.button_filter.Text = "Фильтр для заказов";
+            this.button_filter.UseVisualStyleBackColor = false;
+            this.button_filter.Click += new System.EventHandler(this.button_filter_Click);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
             this.ClientSize = new System.Drawing.Size(1182, 641);
+            this.Controls.Add(this.button_filter);
             this.Controls.Add(this.button_tableEmployerShow);
             this.Controls.Add(this.button_tableClientShow);
             this.Controls.Add(this.button_tableOrderShow);
@@ -637,5 +651,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn unitDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idClientsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button button_filter;
     }
 }

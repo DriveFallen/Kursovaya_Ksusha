@@ -159,36 +159,18 @@ namespace SQLApp
             }
         }
 
-        private void button_tableProductsChange_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_tableDishesChange_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_tableOrderChange_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_tableClientChange_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_tableEmployerChange_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button_close_Click(object sender, EventArgs e)
         {
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
             this.Hide();
+        }
+
+        private void button_filter_Click(object sender, EventArgs e)
+        {
+            Form_Filter form = new Form_Filter();
+            form.Show();
+            this.Close();
         }
     }
 }

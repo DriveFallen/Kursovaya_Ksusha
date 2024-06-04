@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form_Filter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Filter.Designer.cs">
+      <DependentUpon>Form_Filter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestoranDataSet.cs">
+      <DependentUpon>RestoranDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="RestoranDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -104,6 +113,9 @@
     <Compile Include="Окна редактирования\Form_Dishes_change.Designer.cs">
       <DependentUpon>Form_Dishes_change.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Form_Filter.resx">
+      <DependentUpon>Form_Filter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_Main.resx">
       <DependentUpon>Form_Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,8 +164,8 @@
     </None>
     <None Include="RestoranDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>RestoranDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>RestoranDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="RestoranDataSet.xss">
       <DependentUpon>RestoranDataSet.xsd</DependentUpon>

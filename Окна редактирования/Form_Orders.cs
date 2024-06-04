@@ -365,7 +365,7 @@ namespace SQLApp.Окна_редактирования
 
         private void button_orders_add_Click(object sender, EventArgs e)
         {
-            string Add_orders = "INSERT INTO Orders (DateTimeOrders, IdEmployees, IdClients, NumberTables, PriceOrders) SELECT @dateTime, Employees.IdEmployees, Clients.IdClients, @table, 0 FROM Employees, Clients WHERE Employees.FullName = @employer and Clients.FullName = @client"; // не прописываем ID так как стоит автоматический счёт в самой БД
+            string Add_orders = "INSERT INTO Orders (DateTimeOrders, IdEmployees, IdClients, NumberTables) SELECT @dateTime, Employees.IdEmployees, Clients.IdClients, @table FROM Employees, Clients WHERE Employees.FullName = @employer and Clients.FullName = @client"; // не прописываем ID так как стоит автоматический счёт в самой БД
             SqlCommand Add_orders_query = new SqlCommand(Add_orders, connection);
             SqlParameter Orders_dateTime = new SqlParameter("@dateTime", dateTimePicker_orders_dateTime.Value);
             SqlParameter Orders_employer = new SqlParameter("@employer", comboBox_orders_employer.Text);

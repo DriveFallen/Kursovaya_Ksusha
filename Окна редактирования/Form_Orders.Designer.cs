@@ -607,9 +607,9 @@
             this.priceDataGridViewTextBoxColumn,
             this.idCategoriesDataGridViewTextBoxColumn});
             this.dataGridView_dishes.DataSource = this.dishesBindingSource;
-            this.dataGridView_dishes.Location = new System.Drawing.Point(656, 266);
+            this.dataGridView_dishes.Location = new System.Drawing.Point(648, 266);
             this.dataGridView_dishes.Name = "dataGridView_dishes";
-            this.dataGridView_dishes.Size = new System.Drawing.Size(91, 83);
+            this.dataGridView_dishes.Size = new System.Drawing.Size(99, 83);
             this.dataGridView_dishes.TabIndex = 66;
             this.dataGridView_dishes.Visible = false;
             // 
@@ -755,7 +755,6 @@
             this.ClientSize = new System.Drawing.Size(1478, 768);
             this.Controls.Add(this.dataGridView_clients);
             this.Controls.Add(this.dataGridView_employers);
-            this.Controls.Add(this.dataGridView_dishes);
             this.Controls.Add(this.comboBox_orders_client);
             this.Controls.Add(this.comboBox_orders_employer);
             this.Controls.Add(this.dateTimePicker_orders_dateTime);
@@ -791,6 +790,7 @@
             this.Controls.Add(this.dataGridView_statusPreOrders);
             this.Controls.Add(this.dataGridView_preOrders);
             this.Controls.Add(this.dataGridView_orders);
+            this.Controls.Add(this.dataGridView_dishes);
             this.Name = "Form_Orders";
             this.Text = "Form_Orders";
             this.Load += new System.EventHandler(this.Form_Orders_Load);
